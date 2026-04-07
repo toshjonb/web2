@@ -2,23 +2,21 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
-// Static fayllar
-app.use(express.static(__dirname));
+// faqat public papkani ochadi
+app.use(express.static(path.join(__dirname, "public")));
 
-// Test route (MUHIM)
+// test
 app.get("/test", (req, res) => {
   res.send("WORKING ✅");
 });
 
-// Asosiy sahifa
+// asosiy sahifa
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-// Server start
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running on port " + PORT);
 });
